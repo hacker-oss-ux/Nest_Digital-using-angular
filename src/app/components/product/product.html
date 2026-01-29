@@ -1,45 +1,43 @@
 <div class="container py-5">
   <h2 class="text-center mb-4">Our Products</h2>
-  <div class="row g-4">
-    <div class="col-12 col-sm-6 col-md-4" *ngFor="let item of products">
-      <div class="card product-card h-100" tabindex="0" (click)="viewProduct(item)" (keydown.enter)="viewProduct(item, $event)" aria-label="View details for {{item.title}}">
-        <img [src]="item.image" class="card-img-top product-img" [alt]="item.title">
-        <div class="card-body">
-          <h5 class="card-title">{{item.title}}</h5>
-          <span *ngIf="item.rating?.rate >= 4.5" class="badge bg-primary mb-2">Top Rated</span>
-          <p class="card-text text-truncate">{{item.description}}</p>
-          <p class="product-price">₹{{item.price}}</p>
-        </div>
-        <div class="card-footer bg-white border-0 text-end">
-          <button class="btn btn-outline-primary btn-sm" (click)="goToSingle(item.id, $event)">View Details</button>
+  <div *ngIf="!selectedProduct">
+    <div class="row g-4">
+      <div class="col-12 col-sm-6 col-md-4" *ngFor="let item of products">
+        <div class="card product-card h-100" tabindex="0" (click)="viewProduct(item)" (keydown.enter)="viewProduct(item, $event)" aria-label="View details for {{item.title}}">
+          <img [src]="item.image" class="card-img-top product-img" [alt]="item.title">
+          <div class="card-body">
+            <h5 class="card-title">{{item.title}}</h5>
+            <span *ngIf="item.rating?.rate >= 4.5" class="badge bg-primary mb-2">Top Rated</span>
+            <p class="card-text text-truncate">{{item.description}}</p>
+            <p class="product-price">₹{{item.price}}</p>
+          </div>
+          <div class="card-footer bg-white border-0 text-end">
+            <button class="btn btn-outline-primary btn-sm" (click)="goToSingle(item.id, $event)">View Details</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Modal for product details -->
-  <div class="modal fade show" tabindex="-1" [ngStyle]="{display: selectedProduct ? 'block' : 'none'}" *ngIf="selectedProduct">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">{{selectedProduct.title}}</h5>
-          <button type="button" class="btn-close" aria-label="Close" (click)="closeModal()"></button>
+  <!-- Single Product View (API-driven) -->
+  <div *ngIf="selectedProduct" class="single-product-view mt-5">
+    <div class="card mx-auto" style="max-width: 600px;">
+      <img [src]="selectedProduct.image" class="card-img-top product-img" [alt]="selectedProduct.title">
+      <div class="card-body">
+        <h3 class="card-title">{{selectedProduct.title}}</h3>
+        <div *ngIf="isProductLoading" class="alert alert-info py-2">Loading latest details...</div>
+        <span *ngIf="selectedProduct.rating?.rate >= 4.5" class="badge bg-primary mb-2">Top Rated</span>
+        <p class="card-text">{{selectedProduct.description}}</p>
+        <div *ngIf="selectedProduct.rating">
+          <span class="badge bg-success me-2">Rating: {{selectedProduct.rating.rate}} ★</span>
+          <span class="text-muted">({{selectedProduct.rating.count}} reviews)</span>
         </div>
-        <div class="modal-body">
-          <img [src]="selectedProduct.image" class="img-fluid mb-3 rounded" [alt]="selectedProduct.title">
-          <p>{{selectedProduct.description}}</p>
-          <div *ngIf="selectedProduct.rating">
-            <span class="badge bg-success me-2">Rating: {{selectedProduct.rating.rate}} ★</span>
-            <span class="text-muted">({{selectedProduct.rating.count}} reviews)</span>
-          </div>
-          <p class="mt-3 fw-bold">Price: ₹{{selectedProduct.price}}</p>
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" (click)="closeModal()">Close</button>
-          <button class="btn btn-primary" (click)="goToSingle(selectedProduct.id)">Go to Product Page</button>
-        </div>
+        <p class="product-price mt-3 fw-bold">Price: ₹{{selectedProduct.price}}</p>
+      </div>
+      <div class="card-footer bg-white border-0 text-end">
+        <button class="btn btn-secondary me-2" (click)="closeModal()">Back to Products</button>
+        <button class="btn btn-primary" (click)="goToSingle(selectedProduct.id)">Go to Product Page</button>
       </div>
     </div>
-    <div class="modal-backdrop fade show"></div>
   </div>
 </div>

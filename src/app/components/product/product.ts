@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Apiservice } from '../../apiservice';
-import { Router } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { filter, Subscription } from 'rxjs';
 
 @Component({
   standalone: true,
@@ -10,22 +11,64 @@ import { CommonModule } from '@angular/common';
   templateUrl: './product.html',
   styleUrls: ['./product.css'],
 })
-export class Product {
+export class Product implements OnInit, OnDestroy {
   products: any[] = [];
   selectedProduct: any = null;
+  isProductLoading = false;
+  private navSubscription?: Subscription;
   constructor(private apiservice: Apiservice, private router: Router) {}
+
   ngOnInit() {
+    this.loadProducts();
+    this.navSubscription = this.router.events
+      .pipe(filter((event): event is NavigationEnd => event instanceof NavigationEnd))
+      .subscribe((event) => {
+        if (event.urlAfterRedirects === '/product') {
+          this.closeModal();
+          if (!this.products.length) {
+            this.loadProducts();
+          }
+        }
+      });
+  }
+
+  ngOnDestroy() {
+    this.navSubscription?.unsubscribe();
+  }
+
+  private loadProducts() {
     this.apiservice.getProduct().subscribe((data: any) => {
       this.products = data;
     });
   }
 
+
   viewProduct(product: any, event?: Event) {
     if (event) event.stopPropagation();
-    this.selectedProduct = product;
+    if (!product) {
+      return;
+    }
+
+    this.selectedProduct = { ...product };
+    if (!product.id) {
+      return;
+    }
+
+    this.isProductLoading = true;
+    this.apiservice.getSingleProduct(product.id).subscribe({
+      next: (data: any) => {
+        this.selectedProduct = data;
+        this.isProductLoading = false;
+      },
+      error: () => {
+        this.isProductLoading = false;
+      }
+    });
   }
 
+
   closeModal() {
+    this.isProductLoading = false;
     this.selectedProduct = null;
   }
 
