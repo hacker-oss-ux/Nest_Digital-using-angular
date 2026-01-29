@@ -1,0 +1,389 @@
+/* ================= HERO SECTION ================= */
+
+.display-5 {
+  font-weight: 800;
+  animation: slideInDown 0.8s ease;
+}
+
+.lead {
+  font-size: 18px;
+  animation: slideInUp 0.8s ease 0.2s both;
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hero should fill viewport so page fits on screen */
+.home-hero {
+  min-height: calc(100vh - 160px); /* leave room for header/footer and padding */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+  background: linear-gradient(rgba(30,34,60,0.68), rgba(30,34,60,0.68)), url("https://nestdigital.com/wp-content/uploads/2023/07/Rectangle-153.png") center center/cover no-repeat, #1e223c;
+  background-blend-mode: darken, normal;
+  position: relative;
+}
+
+.home-hero .container {
+  position: relative;
+  z-index: 2;
+}
+
+/* ================= SECTION TITLES ================= */
+
+h2 {
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+h4 {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+/* ================= CARDS ================= */
+
+.card {
+  border: none;
+  transition: all 0.3s ease;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(102, 126, 234, 0.2) !important;
+}
+
+.card-img-top {
+  height: 250px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.card:hover .card-img-top {
+  transform: scale(1.08);
+}
+
+.card-title {
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+/* ================= EXCELLENCE SECTION ================= */
+
+.shadow-lg {
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15) !important;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.shadow-lg:hover {
+  transform: scale(1.02);
+}
+
+/* Target the large excellence image and keep it contained */
+.excellence-img {
+  width: 100%;
+  max-height: 360px;
+  object-fit: cover;
+  display: block;
+}
+
+
+/* ================= BUTTONS ================= */
+
+.btn-primary {
+  background-color: #667eea;
+  border-color: #667eea;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #764ba2;
+  border-color: #764ba2;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+}
+
+.btn-outline-primary {
+  color: #667eea;
+  border-color: #667eea;
+  font-weight: 600;
+}
+
+.btn-outline-primary:hover {
+  background-color: #667eea;
+  border-color: #667eea;
+  color: white;
+}
+
+.btn-outline-light {
+  font-weight: 600;
+}
+
+.btn-outline-light:hover {
+  background-color: white;
+  color: #333;
+}
+
+/* ================= LIST ITEMS ================= */
+
+.list-unstyled li {
+  transition: all 0.3s ease;
+  padding: 10px 0;
+}
+
+.list-unstyled li:hover {
+  padding-left: 10px;
+}
+
+.bi-check-circle-fill {
+  font-size: 20px;
+}
+
+/* ================= FOOTER ================= */
+
+footer {
+  margin-top: 50px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+footer a {
+  transition: all 0.3s ease;
+}
+
+footer a:hover {
+  color: #667eea !important;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+  .display-5 {
+    font-size: 32px;
+  }
+
+  h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+
+  h4 {
+    font-size: 18px;
+  }
+
+  .shadow-lg {
+    margin-bottom: 30px;
+  }
+
+  .ps-md-4 {
+    padding-left: 0 !important;
+  }
+
+  .card-img-top {
+    height: 200px;
+  }
+}
+
+@media (max-width: 576px) {
+  .display-5 {
+    font-size: 24px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  .card {
+    margin-bottom: 20px;
+  }
+
+  .list-unstyled li strong {
+    display: block;
+    margin-top: 5px;
+  }
+}
+
+/* ================= HOME CAROUSEL (Angular) STYLES ================= */
+.custom-carousel {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.custom-carousel .carousel-slide {
+  transition: opacity 420ms ease, transform 420ms ease;
+}
+
+.custom-carousel .carousel-slide img {
+  width: 100%;
+  height: 320px; /* reduced height for better viewport fit */
+  max-height: 420px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.custom-carousel .carousel-caption {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+  background: linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.25));
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  color: #fff;
+  backdrop-filter: blur(4px);
+}
+
+.custom-carousel .carousel-controls {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  gap: 8px;
+}
+
+/* Larger, touch-friendly prev/next buttons */
+.custom-carousel .carousel-controls .carousel-prev,
+.custom-carousel .carousel-controls .carousel-next {
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  padding: 0.35rem;
+}
+
+.custom-carousel .carousel-controls .carousel-prev:focus,
+.custom-carousel .carousel-controls .carousel-next:focus {
+  outline: 3px solid rgba(102,126,234,0.22);
+  outline-offset: 2px;
+}
+
+.custom-carousel .indicators {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.custom-carousel .indicators button {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.55);
+  border: none;
+  padding: 0;
+  transition: transform var(--transition-fast), background var(--transition-fast);
+}
+
+.custom-carousel .indicators button:focus {
+  outline: 2px solid rgba(102,126,234,0.22);
+  outline-offset: 2px;
+}
+
+.custom-carousel .indicators button.active {
+  background: var(--primary);
+  transform: scale(1.18);
+}
+
+/* Hero CTA polish */
+.home-hero .btn-primary {
+  padding: 0.9rem 1.3rem;
+  font-size: 1.05rem;
+  border-radius: 10px;
+}
+
+.home-hero .display-5 {
+  font-size: clamp(28px, 4vw, 44px);
+  line-height: 1.05;
+}
+
+.home-hero .lead {
+  max-width: 68ch;
+  margin-left: auto;
+  margin-right: auto;
+  opacity: 0.94;
+}
+/* Cards */
+.card {
+  border-radius: var(--card-radius);
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+}
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 40px rgba(22,28,46,0.08);
+}
+
+@media (max-width: 992px) {
+  .custom-carousel .carousel-slide img {
+    height: 300px;
+  }
+  .card-img-top {
+    height: 220px;
+  }
+  .excellence-img {
+    max-height: 280px;
+  }
+}
+
+@media (max-width: 768px) {
+  .custom-carousel .carousel-slide img {
+    height: 240px;
+  }
+  .card-img-top {
+    height: 200px;
+  }
+  .excellence-img {
+    max-height: 220px;
+  }
+}
+
+@media (max-width: 576px) {
+  .custom-carousel .carousel-slide img {
+    height: 160px;
+  }
+  .custom-carousel .carousel-caption {
+    font-size: 14px;
+    padding: 0.4rem 0.6rem;
+  }
+  .card-img-top {
+    height: 150px;
+  }
+  .excellence-img {
+    max-height: 140px;
+  }
+}

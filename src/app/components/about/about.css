@@ -1,0 +1,36 @@
+/* About page styles: hero, image sizing, cards, and subtle motion */
+
+.about-hero {
+  min-height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.about-img {
+  width: 100%;
+  max-height: 360px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* subtle card lift */
+.card { transition: transform 220ms ease, box-shadow 220ms ease; }
+.card:hover { transform: translateY(-6px); box-shadow: 0 18px 36px rgba(22,28,46,0.06); }
+
+/* fade-in utility for sections */
+.fade-in { animation: fadeIn 420ms ease both; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+/* tighten values section */
+.bg-light h2 { margin-bottom: 1rem; }
+
+/* CTA adjustments (will use global .btn-cta) */
+.btn-cta { font-weight: 700; border-radius: 10px; }
+
+@media (max-width: 576px) {
+  .about-img { max-height: 200px; }
+  .about-hero { padding-top: 1.25rem; padding-bottom: 1.25rem; }
+}

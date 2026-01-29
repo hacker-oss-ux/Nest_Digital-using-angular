@@ -1,0 +1,68 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Global page background and typography provided by user */
+:root {
+  --primary: #667eea;
+  --primary-600: #5a6fe0;
+  --muted: #6b7280;
+  --card-radius: 12px;
+  --transition-fast: 0.18s ease;
+}
+
+html, body, app-root {
+  height: 100%;
+}
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 20px; /* slightly reduced padding for better fit */
+  font: 13px "Helvetica Neue", "Lucida Grande", "Arial", sans-serif;
+  background: linear-gradient(180deg, #fff 0%, #ECE9E9 100%);
+  color: #333;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Buttons & CTA polish */
+.btn-primary {
+  background: linear-gradient(180deg, var(--primary), var(--primary-600));
+  border-color: transparent;
+  box-shadow: 0 6px 24px rgba(102, 126, 234, 0.18);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+.btn-primary:hover, .btn-primary:focus {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 36px rgba(102, 126, 234, 0.22);
+}
+
+/* accessible focus outlines */
+:focus {
+  outline: 3px solid rgba(102,126,234,0.18);
+  outline-offset: 2px;
+}
+
+/* utility for prominent CTA */
+.btn-cta {
+  padding: 0.85rem 1.25rem;
+  font-weight: 700;
+  border-radius: 10px;
+}
+
+/* small motion helpers */
+.fade-in { animation: fadeIn 0.36s ease both; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+ 
+
+/* Responsive padding adjustments */
+@media (max-width: 992px) {
+  body {
+    padding: 40px 48px;
+  }
+}
+
+@media (max-width: 576px) {
+  body {
+    padding: 20px 16px;
+  }
+}
+
